@@ -36,7 +36,7 @@ var io = require('socket.io')(server);
 
 app.get('/', async (req, res) => {
     try {
-        res.render('index.html')
+        res.render('main.html')
     }
     catch (e) {
 
