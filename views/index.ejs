@@ -2,7 +2,9 @@
 
 <title>oolong RADIO</title>
 
+
 <head>
+    <meta charset="utf-8">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jplayer/2.9.2/jplayer/jquery.jplayer.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/3.0.1/socket.io.js"></script>
@@ -22,7 +24,7 @@
         $(document).ready(function () {
 
             var stream = {
-                mp3: "http://stream.oolongradio.com/oolong-radio"
+                mp3: "https://stream.oolongradio.com/oolong-radio"
             },
                 ready = false;
 
@@ -74,7 +76,6 @@
 
 <body>
     <div class="container">
-        <marquee class="metaData" scrollamount="5"></marquee>
 
         <div id="jquery_jplayer_1" class="jp-jplayer"></div>
 
@@ -94,6 +95,7 @@
         </div>
 
 
+        <marquee class="metaData" scrollamount="5"></marquee>
 
     </div>
 </body>

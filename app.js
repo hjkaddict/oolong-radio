@@ -31,7 +31,7 @@ const radioStation = new Parser({
 
 io.on('connection', function (socket) {
     radioStation.on('metadata', function (data) {
-        process.stdout.write(`${data.get('StreamTitle')}\n`);
+        // process.stdout.write(`${data.get('StreamTitle')}\n`);
         socket.emit('metadata', { message: data.get('StreamTitle') });
     })
 });
