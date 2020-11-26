@@ -14,7 +14,7 @@ const path = require('path')
 const app = express()
 app.use(express.static('./'));
 
-const { Parser } = require('icecast-parser');
+// const { Parser } = require('icecast-parser');
 
 var server = require('http').Server(app);
 var io = require('socket.io')(server);
