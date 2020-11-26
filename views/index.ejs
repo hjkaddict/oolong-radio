@@ -19,44 +19,44 @@
     <script type="text/javascript">
 
         //<![CDATA[
-        // $(document).ready(function () {
+        $(document).ready(function () {
 
-        //     var stream = {
-        //         mp3: "http://stream.oolongradio.com/oolong-radio"
-        //     },
-        //         ready = false;
+            var stream = {
+                mp3: "http://stream.oolongradio.com/oolong-radio"
+            },
+                ready = false;
 
-        //     $("#jquery_jplayer_1").jPlayer({
-        //         ready: function (event) {
-        //             ready = true;
-        //             $(this).jPlayer("setMedia", stream);
-        //         },
-        //         pause: function () {
-        //             $(this).jPlayer("clearMedia");
-        //         },
-        //         error: function (event) {
-        //             if (ready && event.jPlayer.error.type === $.jPlayer.error.URL_NOT_SET) {
-        //                 // Setup the media stream again and play it.
-        //                 $(this).jPlayer("setMedia", stream).jPlayer("play");
-        //             }
-        //         },
+            $("#jquery_jplayer_1").jPlayer({
+                ready: function (event) {
+                    ready = true;
+                    $(this).jPlayer("setMedia", stream);
+                },
+                pause: function () {
+                    $(this).jPlayer("clearMedia");
+                },
+                error: function (event) {
+                    if (ready && event.jPlayer.error.type === $.jPlayer.error.URL_NOT_SET) {
+                        // Setup the media stream again and play it.
+                        $(this).jPlayer("setMedia", stream).jPlayer("play");
+                    }
+                },
 
-        //         supplied: "mp3",
-        //         preload: "metadata",
+                supplied: "mp3",
+                preload: "metadata",
 
-        //         waiting: function (event) {
-        //             // console.log('start loading stream')
-        //             $('.jp-pause').hide();
-        //             $("#loading").fadeIn(1000);
-        //         },
-        //         playing: function (event) {
-        //             //console.log('stream is successfully loaded')
-        //             $('.jp-pause').show();
-        //             $('#loading').hide();
-        //         }
-        //     });
+                waiting: function (event) {
+                    // console.log('start loading stream')
+                    $('.jp-pause').hide();
+                    $("#loading").fadeIn(1000);
+                },
+                playing: function (event) {
+                    //console.log('stream is successfully loaded')
+                    $('.jp-pause').show();
+                    $('#loading').hide();
+                }
+            });
 
-        // });
+        });
             //]]>
     </script>
 
@@ -74,7 +74,7 @@
 
 <body>
     <div class="container">
-        <marquee class="metaData" scrollamount="5">the stream is currently not available</marquee>
+        <marquee class="metaData" scrollamount="5"></marquee>
 
         <div id="jquery_jplayer_1" class="jp-jplayer"></div>
 
@@ -87,9 +87,9 @@
                 <div></div>
             </div>
 
-            <!-- <div class="jp-pause">
+            <div class="jp-pause">
                 <img class="jp-pause" id="playBtn" src="/img/pause-button.png">
-            </div> -->
+            </div>
 
         </div>
 
