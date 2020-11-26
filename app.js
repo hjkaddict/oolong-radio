@@ -9,9 +9,12 @@ Todo:
 
 const express = require('express')
 const path = require('path')
+const ejs = require('ejs')
 
 const app = express()
-app.use(express.static('./'));
+const publicDirectoryPath = path.join(__dirname, '../public')
+app.set('view engine', 'ejs')
+app.use(express.static('public'));
 
 // const { Parser } = require('icecast-parser');
 
@@ -35,7 +38,7 @@ var io = require('socket.io')(server);
 
 app.get('/', async (req, res) => {
     try {
-        res.render('./main.html')
+        res.render('index')
     }
     catch (e) {
         console.log(e)
