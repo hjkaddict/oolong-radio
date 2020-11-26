@@ -7,7 +7,6 @@ Todo:
 
 */
 
-
 const express = require('express')
 const path = require('path')
 
@@ -36,10 +35,10 @@ var io = require('socket.io')(server);
 
 app.get('/', async (req, res) => {
     try {
-        res.render('main.html')
+        res.render('./main.html')
     }
     catch (e) {
-
+        console.log(e)
     }
 })
 

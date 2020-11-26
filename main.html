@@ -62,13 +62,13 @@
     </script>
 
     <script>
-        // var socket = io.connect('/');
-        // var metaData;
+        var socket = io.connect('/');
+        var metaData;
 
-        // socket.on('metadata', function (data) {
-        //     $('.metaData').text(data.message)
-        //     // console.log('Got announcement:', data.message);
-        // });
+        socket.on('metadata', function (data) {
+            $('.metaData').text(data.message)
+            // console.log('Got announcement:', data.message);
+        });
 
     </script>
 </head>
