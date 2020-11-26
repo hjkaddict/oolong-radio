@@ -1,16 +1,16 @@
 @font-face {
     font-family: 'GalanoLight';
-    src: url("../public/font/GalanoClassicLight.otf") format("opentype");
+    src: url("/font/GalanoClassicLight.otf") format("opentype");
 }
 
 @font-face {
     font-family: 'GalanoAltLight';
-    src: url("../public/font/GalanoClassicAltLight.otf") format("opentype");
+    src: url("/font/GalanoClassicAltLight.otf") format("opentype");
 }
 
 @font-face {
     font-family: 'GalanoMedium';
-    src: url("../public/font/GalanoClassicMedium.otf") format("opentype");
+    src: url("/font/GalanoClassicMedium.otf") format("opentype");
 }
 
 html {
