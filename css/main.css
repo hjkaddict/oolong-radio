@@ -1,0 +1,83 @@
+@font-face {
+    font-family: 'GalanoLight';
+    src: url("../public/font/GalanoClassicLight.otf") format("opentype");
+}
+
+@font-face {
+    font-family: 'GalanoAltLight';
+    src: url("../public/font/GalanoClassicAltLight.otf") format("opentype");
+}
+
+@font-face {
+    font-family: 'GalanoMedium';
+    src: url("../public/font/GalanoClassicMedium.otf") format("opentype");
+}
+
+html {
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    font-family: 'GalanoLight';
+}
+
+.container {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    background: linear-gradient(352deg, #cbe000, #ad6900);
+    background-size: 400% 400%;
+    -webkit-animation: backgroundGradient 17s ease infinite;
+    -moz-animation: backgroundGradient 17s ease infinite;
+    animation: backgroundGradient 17s ease infinite;
+
+}
+
+#playBtn {
+    cursor: pointer;
+    width: 150px;
+    opacity: 0.75;
+}
+
+#playBtn:hover {
+    opacity: 1.0;
+}
+
+#loading {
+    display: none;
+}
+
+.metaData {
+    font-size: 3em;
+    width: 100%;
+    position: absolute;
+    padding: 1em 0;
+    pointer-events:none;
+}
+
+@-webkit-keyframes backgroundGradient {
+    0%{background-position:99% 0%}
+    50%{background-position:2% 100%}
+    100%{background-position:99% 0%}
+}
+@-moz-keyframes backgroundGradient {
+    0%{background-position:99% 0%}
+    50%{background-position:2% 100%}
+    100%{background-position:99% 0%}
+}
+@keyframes backgroundGradient {
+    0%{background-position:99% 0%}
+    50%{background-position:2% 100%}
+    100%{background-position:99% 0%}
+}
+
+
+@media (min-width: 768px) and (max-width: 1024px) {
+    .metaData {
+        font-size: 2.5em;
+    }
+}
