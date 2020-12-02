@@ -11,56 +11,17 @@
 
     <link rel="shortcut icon" href="#" />
     <link rel="stylesheet" href="/css/reset.css">
+
+    <link rel="stylesheet" href="/css/font.css">
     <link rel="stylesheet" href="/css/main.css">
     <link rel="stylesheet" href="/css/loadingAnimation.css">
+    <link rel="stylesheet" href="/css/volumeSlider.css">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link
         href="https://fonts.googleapis.com/css2?family=Noto+Sans&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
         rel="stylesheet">
 
-    <script type="text/javascript">
-
-        //<![CDATA[
-        $(document).ready(function () {
-
-            var stream = {
-                mp3: "https://stream.oolongradio.com/oolong-radio"
-            },
-                ready = false;
-
-            $("#jquery_jplayer_1").jPlayer({
-                ready: function (event) {
-                    ready = true;
-                    $(this).jPlayer("setMedia", stream);
-                },
-                pause: function () {
-                    $(this).jPlayer("clearMedia");
-                },
-                error: function (event) {
-                    if (ready && event.jPlayer.error.type === $.jPlayer.error.URL_NOT_SET) {
-                        // Setup the media stream again and play it.
-                        $(this).jPlayer("setMedia", stream).jPlayer("play");
-                    }
-                },
-
-                supplied: "mp3",
-                preload: "metadata",
-
-                waiting: function (event) {
-                    // console.log('start loading stream')
-                    $('.jp-pause').hide();
-                    $("#loading").fadeIn(1000);
-                },
-                playing: function (event) {
-                    //console.log('stream is successfully loaded')
-                    $('.jp-pause').show();
-                    $('#loading').hide();
-                }
-            });
-
-        });
-            //]]>
-    </script>
+    <script src="/js/jPlayerFunc.js"></script>
 
     <script>
         var socket = io.connect('/');
@@ -72,37 +33,73 @@
         });
 
     </script>
+
+
 </head>
 
 <body>
-    <div class="container">
-
+    <div class="blank">
         <div id="jquery_jplayer_1" class="jp-jplayer"></div>
-
         <div id="jp_container_1" class="jp-audio-stream" role="application" aria-label="media player">
 
-            <div class="jp-play">
-                <img class="jp-play" id="playBtn" src="/img/play-button.png">
-            </div>
-            <div id="loading" class="la-ball-clip-rotate la-dark la-3x">
-                <div></div>
+            <div class="play-pause-loading">
+                <div class="jp-play">
+                    <img id="playBtn" src="/img/play-button.png">
+                </div>
+
+                <div id="loading" class="la-ball-clip-rotate la-dark">
+                    <div></div>
+                </div>
+
+                <div class="jp-pause">
+                    <img id="playBtn" src="/img/pause-button.png">
+                </div>
             </div>
 
-            <div class="jp-pause">
-                <img class="jp-pause" id="playBtn" src="/img/pause-button.png">
+
+            <div class="volumeControl">
+                <img id="speaker" src="/img/speaker-on.png">
+
+                <div class="range-slider">
+                    <input id="volumeSlider" type="range" step="0.05" value="0.8" min="0" max="1">
+                </div>
             </div>
+        </div>
+    </div>
+
+    <div class="blank2">
+
+        <div class="currentProgram">
+            <svg height="16" width="16" class="blinking">
+                <circle cx="8" cy="8" r="8" fill="red">
+                    Sorry, your browser does not support inline SVG
+            </svg>
+            <p style="padding-left: 10px;">current : oolong music rotation</p>
 
         </div>
-
-
         <marquee class="metaData" scrollamount="5"></marquee>
-
     </div>
+
+    <div class="radioPlayer">
+    </div>
+
+    <div class="container">
+        <!-- <nav class="mainNav">
+            <ol>
+                <li>
+                    <p>Program</p>
+                </li>
+                <li>Archive</li>
+                <li>Projects</li>
+                <li>About</li>
+            </ol>
+        </nav> -->
+    </div>
+
 </body>
 
 <script>
     $(document).ready(function () {
-
         var playingStatus = false;
         $('#playBtn').click(function () {
             $('#playBtn').toggleClass('playing')
@@ -110,12 +107,24 @@
 
             if (playingStatus) {
                 $('#audioBtn').trigger("play")
-
             } else {
                 $('#audioBtn').trigger("pause");
             }
         })
 
+        var mute = false;
+        $('#speaker').click(function () {
+            $('#speaker').toggleClass('mute')
+            mute = !mute;
+
+            if (mute) {
+                $("#jquery_jplayer_1").jPlayer("mute", true);
+                $('#speaker').attr("src", "/img/speaker-mute.png")
+            } else {
+                $("#jquery_jplayer_1").jPlayer("mute", false);
+                $('#speaker').attr("src", "/img/speaker-on.png")
+            }
+        })
     })
 </script>
 

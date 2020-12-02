@@ -4,7 +4,7 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "dev": "nodemon app.js -e html,js,css",
+    "dev": "nodemon app.js -e ejs,js,css",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
@@ -15,7 +15,9 @@
     "icecast-parser": "^4.0.2",
     "node-lame": "^1.2.2",
     "path": "^0.12.7",
-    "socket.io": "^3.0.3"
+    "random-int": "^2.0.1",
+    "socket.io": "^3.0.3",
+    "unirest": "^0.6.0"
   },
   "devDependencies": {
     "nodemon": "^2.0.6"

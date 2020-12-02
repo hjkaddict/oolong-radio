@@ -1,24 +1,3 @@
-@font-face {
-    font-family: 'GalanoLight';
-    src: url("/font/NotoSansKR-Light.otf") format("opentype");
-}
-
-@font-face {
-    font-family: 'GalanoLight';
-    src: url("/font/GalanoClassicLight.otf") format("opentype");
-    unicode-range: U+0020-007E;
-}
-
-@font-face {
-    font-family: 'GalanoAltLight';
-    src: url("/font/GalanoClassicAltLight.otf") format("opentype");
-}
-
-@font-face {
-    font-family: 'GalanoMedium';
-    src: url("/font/GalanoClassicMedium.otf") format("opentype");
-}
-
 html {
     padding: 0;
     margin: 0;
@@ -28,39 +7,71 @@ body {
     font-family: 'GalanoLight';
 }
 
-.container {
-    height: 100%;
+.blank {
+    position: fixed;
+    height: 120px;
+    width: 100vw;
+    background-color: rgba(0, 0, 0, 0.95);
+    z-index: 11;
+}
+
+.blank2 {
+    position: fixed;
+    top: 120px;
+    height: 150px;
+    width: calc(100vw - 300px);
+    background: transparent;
+    z-index: 15;
+    left: 50%;
+    transform: translate(-50%, 0%);
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    /* justify-content: center; */
     align-items: center;
-    position: relative;
+    /* border: 1px solid white; */
 }
 
-.container::after {
-    content: ""; 
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
+.playingInfo {
+    /* border: 1px solid white; */
+    /* justify-content: flex-end; */
+}
+
+.radioPlayer {
+    position: fixed;
+    top: 120px;
+    width: calc(100vw - 300px);
+    z-index: 10;
+    border-top: 150px solid rgba(0, 0, 0, 0.95);
+    border-left: 150px solid transparent;
+    border-right: 150px solid transparent;
+}
+
+.jp-audio-stream {
     height: 100%;
-    background-image: url("../img/deck_1.jpg");
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
-    opacity: 0.8;
-    z-index: 1;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
-.container > * {
-    z-index: 2;
+.play-pause-loading {
+    height: 50%;
+    width: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* border: 1px solid red; */
 }
 
-
+.play-pause-loading img {
+    height: 40px;
+    filter: invert(100%);
+}
 
 #playBtn {
+    position: relative;
     cursor: pointer;
-    width: 150px;
     opacity: 0.8;
 }
 
@@ -73,52 +84,221 @@ body {
     display: none;
 }
 
-.metaData {
-    font-size: 2em;
+
+
+.currentProgram {
+    color: white;
+    /* border: 1px solid red; */
+    position: relative;
+    display: flex;
+    justify-content: center;
+    font-size: 18px;
     width: 100%;
+
+    height: 50px;
+
+    /* border: 1px solid red; */
+    /* border-bottom: 1px solid rgba(255, 255, 255, 0.5); */
+    /* height: 100%; */
+    padding: 0;
+    margin: 0;
+}
+
+.metaData {
+    font-size: 2.5em;
+    height: 80px;
+    display: flex;
+    align-self: center;
+    justify-self: center;
+    /* margin: 10px 0; */
+    align-items: center;
+    /* border: 2px solid white; */
+    color: rgba(255, 255, 255, 0.8);
+    cursor: pointer;
+}
+
+.volumeControl {
     position: absolute;
-    padding: 1em 0;
-    pointer-events: none;
+    height: 100%;
+    width: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    float: right;
+    right: 0;
+    cursor: pointer;
+    color: white;
+    /* border: 1px solid red; */
+    /* position: relative; */
 }
 
-@-webkit-keyframes backgroundGradient {
+.volumeControl img {
+    height: 30px;
+    opacity: 0.8;
+    filter: invert(100%);
+    margin: 0 10px;
+}
+
+.volumeControl img:hover {
+    opacity: 1.0;
+}
+
+.container {
+    height: 100%;
+    position: relative;
+    /* border: 1px solid red; */
+    background: linear-gradient(325deg, #9d4700, #b3d400);
+    background-size: 400% 400%;
+
+    /* -webkit-animation: AnimationName 60s ease infinite;
+    -moz-animation: AnimationName 60s ease infinite;
+    animation: AnimationName 60s ease infinite; */
+}
+
+@-webkit-keyframes AnimationName {
     0% {
-        background-position: 99% 0%
+        background-position: 0% 34%
     }
     50% {
-        background-position: 2% 100%
+        background-position: 100% 67%
     }
     100% {
-        background-position: 99% 0%
+        background-position: 0% 34%
     }
 }
 
-@-moz-keyframes backgroundGradient {
+@-moz-keyframes AnimationName {
     0% {
-        background-position: 99% 0%
+        background-position: 0% 34%
     }
     50% {
-        background-position: 2% 100%
+        background-position: 100% 67%
     }
     100% {
-        background-position: 99% 0%
+        background-position: 0% 34%
     }
 }
 
-@keyframes backgroundGradient {
+@keyframes AnimationName {
     0% {
-        background-position: 99% 0%
+        background-position: 0% 34%
     }
     50% {
-        background-position: 2% 100%
+        background-position: 100% 67%
     }
     100% {
-        background-position: 99% 0%
+        background-position: 0% 34%
     }
 }
 
-@media (min-width: 768px) and (max-width: 1024px) {
-    .metaData {
-        font-size: 3em;
+.container::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url("../img/deck_2.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    opacity: 1.0;
+    z-index: 1;
+}
+
+.container>* {
+    z-index: 2;
+}
+
+.blinking {
+    -webkit-animation: 1s blink ease infinite;
+    -moz-animation: 1s blink ease infinite;
+    -ms-animation: 1s blink ease infinite;
+    -o-animation: 1s blink ease infinite;
+    animation: 1s blink ease infinite;
+}
+
+@keyframes blink {
+    from, to {
+        opacity: 0;
+    }
+    50% {
+        opacity: 1;
     }
 }
+
+@-moz-keyframes blink {
+    from, to {
+        opacity: 0;
+    }
+    50% {
+        opacity: 1;
+    }
+}
+
+@-webkit-keyframes blink {
+    from, to {
+        opacity: 0;
+    }
+    50% {
+        opacity: 1;
+    }
+}
+
+@-ms-keyframes blink {
+    from, to {
+        opacity: 0;
+    }
+    50% {
+        opacity: 1;
+    }
+}
+
+@-o-keyframes blink {
+    from, to {
+        opacity: 0;
+    }
+    50% {
+        opacity: 1;
+    }
+}
+
+.mainNav {
+    position: relative;
+    top: 80px;
+}
+
+.mainNav ol {
+    width: 150px;
+    height: 500px;
+    display: flex;
+    flex-direction: column;
+}
+
+.mainNav ol li {
+    flex: 3;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.mainNav ol li {
+    font-family: 'GalanoMedium';
+    flex: 3;
+    text-align: center;
+    padding: 10px 0px;
+    cursor: pointer;
+    opacity: 0.6;
+    /* border: 1px solid black; */
+    /* background: rgba(255, 255, 255, 0.05); */
+}
+
+.mainNav ol li:hover {
+    /* font-family: 'GalanoMedium'; */
+    /* background: rgba(255, 255, 255, 0.3); */
+    opacity: 1.0;
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {}

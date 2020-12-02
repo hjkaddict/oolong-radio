@@ -1,0 +1,20 @@
+@font-face {
+    font-family: 'GalanoLight';
+    src: url("/font/NotoSansKR-Light.otf") format("opentype");
+}
+
+@font-face {
+    font-family: 'GalanoLight';
+    src: url("/font/GalanoClassicLight.otf") format("opentype");
+    unicode-range: U+0020-007E;
+}
+
+@font-face {
+    font-family: 'GalanoAltLight';
+    src: url("/font/GalanoClassicAltLight.otf") format("opentype");
+}
+
+@font-face {
+    font-family: 'GalanoMedium';
+    src: url("/font/GalanoClassicMedium.otf") format("opentype");
+}
