@@ -8,6 +8,9 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jplayer/2.9.2/jplayer/jquery.jplayer.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/3.0.1/socket.io.js"></script>
+    <script src="/lib/moment.min.js"></script>
+    <script src="/lib/moment-with-locales.js"></script>
+    <script src="/lib/moment-timezone.js"></script>
 
     <link rel="shortcut icon" href="#" />
     <link rel="stylesheet" href="/css/reset.css">
@@ -16,24 +19,25 @@
     <link rel="stylesheet" href="/css/main.css">
     <link rel="stylesheet" href="/css/loadingAnimation.css">
     <link rel="stylesheet" href="/css/volumeSlider.css">
+
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link
         href="https://fonts.googleapis.com/css2?family=Noto+Sans&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
         rel="stylesheet">
 
     <script src="/js/jPlayerFunc.js"></script>
+    <script src="/js/navFunc.js"></script>
+    <script src="/js/clock.js"></script>
+
 
     <script>
         var socket = io.connect('/');
         var metaData;
-
         socket.on('metadata', function (data) {
             $('.metaData').text(data.message)
-            // console.log('Got announcement:', data.message);
         });
 
     </script>
-
 
 </head>
 
@@ -56,44 +60,62 @@
                 </div>
             </div>
 
-
+            <marquee class="metaData" scrollamount="5"></marquee>
             <div class="volumeControl">
                 <img id="speaker" src="/img/speaker-on.png">
 
                 <div class="range-slider">
                     <input id="volumeSlider" type="range" step="0.05" value="0.8" min="0" max="1">
                 </div>
+
             </div>
         </div>
     </div>
 
-    <div class="blank2">
-
-        <div class="currentProgram">
-            <svg height="16" width="16" class="blinking">
-                <circle cx="8" cy="8" r="8" fill="red">
-                    Sorry, your browser does not support inline SVG
-            </svg>
-            <p style="padding-left: 10px;">current : oolong music rotation</p>
-
-        </div>
-        <marquee class="metaData" scrollamount="5"></marquee>
-    </div>
-
-    <div class="radioPlayer">
-    </div>
 
     <div class="container">
-        <!-- <nav class="mainNav">
-            <ol>
-                <li>
-                    <p>Program</p>
-                </li>
-                <li>Archive</li>
-                <li>Projects</li>
-                <li>About</li>
-            </ol>
-        </nav> -->
+        <div class="navContainer">
+            <nav class="mainNav">
+                <ol>
+                    <li><a>Program</a></li>
+                    <li><a>Archives</a></li>
+                    <li><a>Projects</a></li>
+                </ol>
+            </nav>
+
+            <nav class="aboutNav">
+                <ol>
+                    <li><a>About</a></li>
+                </ol>
+            </nav>
+        </div>
+
+        <div class="aboutContainer">
+            <div class="closeBtn">
+                <img id="closeBtn" src="/img/closeBtn.png" width="20px">
+            </div>
+            <p>
+                <b>oolong RADIO</b> is an independent and non-profit web radio station for independent listeners, based
+                in Berlin, Germany.
+            </p>
+            <p>
+                Please share music or sound you want to listen to via our radio. Since oolong RADIO is meant to be
+                established for expanding our experiences in music and sound, we would delightfully put your sources
+                into the stream.
+            </p>
+            <p>
+                The radio is currently in test running.
+            </p>
+            <p>
+                contact: oolongradio@gmail.com
+            </p>
+
+        </div>
+
+        <div class="clock">
+            <p id="clock"></p>
+        </div>
+
     </div>
 
 </body>

@@ -12,7 +12,6 @@ const path = require('path')
 const ejs = require('ejs')
 
 const unirest = require('unirest')
-const randomInt = require('random-int');
 
 const app = express()
 const publicDirectoryPath = path.join(__dirname, '../public')
@@ -38,13 +37,6 @@ io.on('connection', function (socket) {
         socket.emit('metadata', { message: data.get('StreamTitle') });
     })
 });
-
-//timer
-function intervalFunc() {
-    console.log(randomInt(-2, 2))
-}
-
-// setInterval(intervalFunc, 10000);
 
 
 //req for weather API

@@ -15,7 +15,6 @@
     "icecast-parser": "^4.0.2",
     "node-lame": "^1.2.2",
     "path": "^0.12.7",
-    "random-int": "^2.0.1",
     "socket.io": "^3.0.3",
     "unirest": "^0.6.0"
   },
