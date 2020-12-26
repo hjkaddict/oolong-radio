@@ -104,12 +104,11 @@ body {
     height: 100%;
     /* position: relative; */
     background: linear-gradient(325deg, #9d4700, #b3d400);
-    /* background: radial-gradient(ellipse at top, #9d4700, transparent),
-                radial-gradient(ellipse at bottom,  #b3d400, transparent); */
+
     background-size: 400% 400%;
-    /* -webkit-animation: AnimationName 60s ease infinite;
+    -webkit-animation: AnimationName 60s ease infinite;
     -moz-animation: AnimationName 60s ease infinite;
-    animation: AnimationName 60s ease infinite; */
+    animation: AnimationName 60s ease infinite;
     overflow: hidden;
 }
 
