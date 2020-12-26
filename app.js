@@ -1,10 +1,8 @@
 /*
 
 Todo:
-    - retreiving metadata in first connection
-    - http request API 날씨데이터
-    - liquidsoap: random proportion
-    - 
+    - Metadata parsing: icecast-parser 말고 다른 방법으로?
+    - http request API 날씨데이터 적용
 */
 
 const express = require('express')
@@ -19,6 +17,10 @@ app.set('view engine', 'ejs')
 app.use(express.static('public'));
 
 const { Parser } = require('icecast-parser');
+var icy = require('icy');
+var lame = require('node-lame');
+var Speaker = require('speaker');
+
 
 var server = require('http').Server(app);
 var io = require('socket.io')(server);
@@ -26,10 +28,19 @@ var io = require('socket.io')(server);
 //set radiostation option 
 const radioStation = new Parser({
     autoUpdate: true,
-    metadataInterval: 2,
+    metadataInterval: 5,
     notifyOnChangeOnly: false,
     url: 'https://stream.oolongradio.com/oolong-radio'
 });
+
+//testhere
+// icy.get('https://stream.oolongradio.com/oolong-radio', function (res) {
+//     // log any "metadata" events that happen
+//     res.on('metadata', function (metadata) {
+//         var parsed = icy.parse(metadata);
+//         console.error(parsed);
+//     });
+// });
 
 //req for weather API
 // var req = unirest("GET", "https://weatherbit-v1-mashape.p.rapidapi.com/current");
