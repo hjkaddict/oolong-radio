@@ -25,7 +25,7 @@ var io = require('socket.io')(server);
 //set radiostation option 
 const radioStation = new Parser({
     autoUpdate: true,
-    metadataInterval: 5,
+    metadataInterval: 2,
     notifyOnChangeOnly: false,
     url: 'https://stream.oolongradio.com/oolong-radio'
 });
