@@ -8,7 +8,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jplayer/2.9.2/jplayer/jquery.jplayer.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/3.0.1/socket.io.js"></script>
-    <script src="/lib/moment.min.js"></script>
+    <!-- <script src="/lib/moment.min.js"></script> -->
     <script src="/lib/moment-with-locales.js"></script>
     <script src="/lib/moment-timezone.js"></script>
 
@@ -43,6 +43,11 @@
 
 <body>
     <div class="blank">
+
+        <div class="clock">
+            <p id="clock"></p>
+        </div>
+
         <div id="jquery_jplayer_1" class="jp-jplayer"></div>
         <div id="jp_container_1" class="jp-audio-stream" role="application" aria-label="media player">
 
@@ -77,8 +82,9 @@
         <div class="navContainer">
             <nav class="mainNav">
                 <ol>
+                    <!-- <li><a>Live</a></li> -->
                     <li><a>Program</a></li>
-                    <li><a>Archives</a></li>
+                    <li><a>Rotation</a></li>
                     <li><a>Projects</a></li>
                 </ol>
             </nav>
@@ -94,28 +100,29 @@
             <div class="closeBtn">
                 <img id="closeBtn" src="/img/closeBtn.png" width="20px">
             </div>
+
             <p>
-                <b>oolong RADIO</b> is an independent and non-profit web radio station for independent listeners, based
-                in Berlin, Germany.
-            </p>
-            <p>
-                Please share music or sound you want to listen to via our radio. Since oolong RADIO is meant to be
-                established for expanding our experiences in music and sound, we would delightfully put your sources
-                into the stream.
-            </p>
-            <p>
-                The radio is currently in test running.
+                oolong Radio is an independent web radio station for independent listeners, based in Berlin. Since
+                oolong is created for sharing music experiences and expanding joy in being with sound, your
+                participation is really precious to support our broadcasting. Please share your sound materials - it
+                could be your own creation of sound, music, voice, and field recordings, or simply music you would like
+                to listen to - to us. We would be happy to put your sources into the stream.
+
             </p>
             <p>
                 contact: oolongradio@gmail.com
             </p>
+            <p>
 
+                A live streaming is currently in a test run.
+
+            </p>
         </div>
 
-        <div class="clock">
-            <p id="clock"></p>
-        </div>
+        <div class="rotationContainer">
 
+
+        </div>
     </div>
 
 </body>

@@ -2,9 +2,9 @@
 
 Todo:
     - retreiving metadata in first connection
-    - http request API
+    - http request API 날씨데이터
     - liquidsoap: random proportion
-
+    - 
 */
 
 const express = require('express')
@@ -31,16 +31,8 @@ const radioStation = new Parser({
     url: 'https://stream.oolongradio.com/oolong-radio'
 });
 
-//socket.io
-io.on('connection', function (socket) {
-    radioStation.on('metadata', function (data) {
-        socket.emit('metadata', { message: data.get('StreamTitle') });
-    })
-});
-
-
 //req for weather API
-var req = unirest("GET", "https://weatherbit-v1-mashape.p.rapidapi.com/current");
+// var req = unirest("GET", "https://weatherbit-v1-mashape.p.rapidapi.com/current");
 
 // req
 //     .query({
@@ -52,9 +44,19 @@ var req = unirest("GET", "https://weatherbit-v1-mashape.p.rapidapi.com/current")
 //         "useQueryString": true
 //     }).end(function (res) {
 //         if (res.error) throw new Error(res.error);
-//         console.log(res.body.data[0].temp);         //temperature
-//         console.log(res.body.data[0].weather.code)  //weather
+//         console.log(res.body.data[0])
+//         // console.log(res.body.data[0].temp);         //temperature
+//         // console.log(res.body.data[0].weather.code)  //weather
 //     });
+
+
+
+//socket.io
+io.on('connection', function (socket) {
+    radioStation.on('metadata', function (data) {
+        socket.emit('metadata', { message: data.get('StreamTitle') });
+    })
+});
 
 app.get('/', async (req, res) => {
     try {
