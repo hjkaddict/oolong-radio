@@ -65,13 +65,8 @@ const radioStation = new Parser({
 //socket.io
 io.on('connection', function (socket) {
     radioStation.on('metadata', function (data) {
-        // socket.emit('metadata', { message: data.get('StreamTitle') });
-    })
-
-    setTimeout(function () {
-        socket.emit('metadata', 'aaaa')
-    }, 2000)
-    
+        socket.emit('metadata', { message: data.get('StreamTitle') });
+    })    
 });
 
 app.get('/', async (req, res) => {
