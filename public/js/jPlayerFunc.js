@@ -1,7 +1,7 @@
 $(document).ready(function () {
 
     var stream = {
-        mp3: "https://stream.oolongradio.com/oolong-radio"
+        mp3: "https://cloud.oolongradio.com:8443/oolong-rotation"
     },
         ready = false;
 

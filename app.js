@@ -27,7 +27,7 @@ const radioStation = new Parser({
     autoUpdate: true,
     metadataInterval: 2,
     notifyOnChangeOnly: false,
-    url: 'https://stream.oolongradio.com/oolong-radio'
+    url: 'https://cloud.oolongradio.com:8443/oolong-rotation'
 });
 
 //req for weather API
@@ -39,7 +39,7 @@ const radioStation = new Parser({
 //         "lat": "52.54"
 //     }).headers({
 //         "x-rapidapi-key": "1ff5a38105mshe44cd67aa91441ap16ec1fjsn37acebe33558",
-//         "x-rapidapi-host": "weatherbit-v1-mashape.p.rapidapi.com",
+//         "x-rapidapi-host": "weatherbit-v1-mashape.p.rapidapi.``com",
 //         "useQueryString": true
 //     }).end(function (res) {
 //         if (res.error) throw new Error(res.error);
