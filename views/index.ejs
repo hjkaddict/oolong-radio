@@ -31,7 +31,6 @@
 
 
     <script>
-        console.log('oolong')
         var socket = io.connect('/');
         var metaData;
         socket.on('metadata', function (data) {
@@ -85,7 +84,7 @@
                 <ol>
                     <!-- <li><a>Live</a></li> -->
                     <li><a>Program</a></li>
-                    <li><a>Rotation</a></li>
+                    <li id="archive"><a>Archive</a></li>
                     <li><a>Projects</a></li>
                 </ol>
             </nav>
@@ -122,11 +121,23 @@
 
         <div class="rotationContainer">
 
-
         </div>
     </div>
 
 </body>
+
+<script>
+    $(function () {
+
+        $('#archive').click(async function () {
+            console.log('archive clicked')
+            var response = await fetch('http://localhost:3001/test')
+            var data = await response.json()
+            console.log(data)
+            $('.rotationContainer').html(JSON.stringify(data))
+        })
+    })
+</script>
 
 <script>
     $(document).ready(function () {
