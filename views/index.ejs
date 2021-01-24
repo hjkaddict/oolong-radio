@@ -1,10 +1,8 @@
 <html>
+  <title>oolong RADIO</title>
 
-<title>oolong RADIO</title>
-
-
-<head>
-    <meta charset="utf-8">
+  <head>
+    <meta charset="utf-8" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jplayer/2.9.2/jplayer/jquery.jplayer.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/3.0.1/socket.io.js"></script>
@@ -13,186 +11,178 @@
     <script src="/lib/moment-timezone.js"></script>
 
     <link rel="shortcut icon" href="#" />
-    <link rel="stylesheet" href="/css/reset.css">
+    <link rel="stylesheet" href="/css/reset.css" />
 
-    <link rel="stylesheet" href="/css/font.css">
-    <link rel="stylesheet" href="/css/main.css">
-    <link rel="stylesheet" href="/css/loadingAnimation.css">
-    <link rel="stylesheet" href="/css/volumeSlider.css">
+    <link rel="stylesheet" href="/css/font.css" />
+    <link rel="stylesheet" href="/css/main.css" />
+    <link rel="stylesheet" href="/css/loadingAnimation.css" />
+    <link rel="stylesheet" href="/css/volumeSlider.css" />
 
-    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
     <link
-        href="https://fonts.googleapis.com/css2?family=Noto+Sans&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
-        rel="stylesheet">
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+      rel="stylesheet"
+    />
 
     <script src="/js/jPlayerFunc.js"></script>
     <script src="/js/navFunc.js"></script>
     <script src="/js/clock.js"></script>
 
-
     <script>
-        var socket = io.connect('/');
-        var metaData;
-        socket.on('metadata', function (data) {
-            $('.metaData').text(data.message)
-        });
-
+      var socket = io.connect("/");
+      var metaData;
+      socket.on("metadata", function (data) {
+        $(".metaData").text(data.message);
+      });
     </script>
+  </head>
 
-</head>
-
-<body>
+  <body>
     <div class="blank">
+      <div class="clock">
+        <p id="clock"></p>
+      </div>
 
-        <div class="clock">
-            <p id="clock"></p>
+      <div id="jquery_jplayer_1" class="jp-jplayer"></div>
+      <div
+        id="jp_container_1"
+        class="jp-audio-stream"
+        role="application"
+        aria-label="media player"
+      >
+        <div class="play-pause-loading">
+          <div class="jp-play">
+            <img id="playBtn" src="/img/play-button.png" />
+          </div>
+
+          <div id="loading" class="la-ball-clip-rotate la-dark">
+            <div></div>
+          </div>
+
+          <div class="jp-pause">
+            <img id="playBtn" src="/img/pause-button.png" />
+          </div>
         </div>
 
-        <div id="jquery_jplayer_1" class="jp-jplayer"></div>
-        <div id="jp_container_1" class="jp-audio-stream" role="application" aria-label="media player">
+        <marquee class="metaData" scrollamount="5"></marquee>
+        <div class="volumeControl">
+          <img id="speaker" src="/img/speaker-on.png" />
 
-            <div class="play-pause-loading">
-                <div class="jp-play">
-                    <img id="playBtn" src="/img/play-button.png">
-                </div>
-
-                <div id="loading" class="la-ball-clip-rotate la-dark">
-                    <div></div>
-                </div>
-
-                <div class="jp-pause">
-                    <img id="playBtn" src="/img/pause-button.png">
-                </div>
-            </div>
-
-            <marquee class="metaData" scrollamount="5"></marquee>
-            <div class="volumeControl">
-                <img id="speaker" src="/img/speaker-on.png">
-
-                <div class="range-slider">
-                    <input id="volumeSlider" type="range" step="0.05" value="0.8" min="0" max="1">
-                </div>
-
-            </div>
+          <div class="range-slider">
+            <input
+              id="volumeSlider"
+              type="range"
+              step="0.05"
+              value="0.8"
+              min="0"
+              max="1"
+            />
+          </div>
         </div>
+      </div>
     </div>
-
 
     <div class="container">
-        <div class="navContainer">
-            <nav class="mainNav">
-                <ol>
-                    <!-- <li><a>Live</a></li> -->
-                    <li><a>Program</a></li>
-                    <li id="archive"><a>Archive</a></li>
-                    <li><a>Projects</a></li>
-                </ol>
-            </nav>
+      <div class="navContainer">
+        <nav class="mainNav">
+          <ol>
+            <!-- <li><a>Live</a></li> -->
+            <li><a>Program</a></li>
+            <li id="archive"><a>Archive</a></li>
+            <li><a>Projects</a></li>
+          </ol>
+        </nav>
 
-            <nav class="aboutNav">
-                <ol>
-                    <li><a>About</a></li>
-                </ol>
-            </nav>
+        <nav class="aboutNav">
+          <ol>
+            <li><a>About</a></li>
+          </ol>
+        </nav>
+      </div>
+
+      <div class="aboutContainer">
+        <div class="closeBtn">
+          <img id="closeBtn" src="/img/closeBtn.png" width="20px" />
         </div>
 
-        <div class="aboutContainer">
-            <div class="closeBtn">
-                <img id="closeBtn" src="/img/closeBtn.png" width="20px">
-            </div>
+        <p>
+          oolong Radio is an independent web radio station for independent
+          listeners, based in Berlin. Since oolong is created for sharing music
+          experiences and expanding joy in being with sound, your participation
+          is really precious to support our broadcasting. Please share your
+          sound materials - it could be your own creation of sound, music,
+          voice, and field recordings, or simply music you would like to listen
+          to - to us. We would be happy to put your sources into the stream.
+        </p>
+        <p>contact: oolongradio@gmail.com</p>
+        <p>A live streaming is currently in a test run.</p>
+      </div>
 
-            <p>
-                oolong Radio is an independent web radio station for independent listeners, based in Berlin. Since
-                oolong is created for sharing music experiences and expanding joy in being with sound, your
-                participation is really precious to support our broadcasting. Please share your sound materials - it
-                could be your own creation of sound, music, voice, and field recordings, or simply music you would like
-                to listen to - to us. We would be happy to put your sources into the stream.
-
-            </p>
-            <p>
-                contact: oolongradio@gmail.com
-            </p>
-            <p>
-
-                A live streaming is currently in a test run.
-
-            </p>
-        </div>
-
-        <div class="rotationContainer">
-
-        </div>
+      <div class="rotationContainer"></div>
     </div>
+  </body>
 
-</body>
-
-<script>
+  <script>
     $(function () {
+      $("#archive").click(async function () {
+        console.log("archive clicked");
+        var response = await fetch("/archive", {
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+          },
+        });
+        var data = await response.json();
 
-        $('#archive').click(async function () {
-            console.log('archive clicked')
-            var response = await fetch('/archive')
-            var data = await response.json()
-            console.log(data)
+        var allRotationdata = $("<ul></ul>");
+        for (let i in data) {
+          let date = $("<li>" + data[i].date + "</li>");
 
+          let musicFileName = $("<ul></ul>");
+          date.append(musicFileName);
 
-            var allRotationdata = $('<ul></ul>')
-            for (let i in data) {
+          for (let j in data[i].music) {
+            musicFileName.append($("<li>" + data[i].music[j] + "</li>"));
+          }
 
-                let date = $('<li>' + data[i].date + '</li>')
+          allRotationdata.append(date);
+        }
 
-                let musicFileName = $('<ul></ul>');
-                date.append(musicFileName)
+        $(".rotationContainer").html(allRotationdata);
+        // $('.rotationContainer').html(JSON.stringify(data))
+      });
+    });
+  </script>
 
-                for (let j in data[i].music) {
-                    musicFileName.append($('<li>' + data[i].music[j] + '</li>'))
-                }
-
-                allRotationdata.append(date)
-
-            }
-
-
-            $('.rotationContainer').html(allRotationdata)
-            // $('.rotationContainer').html(JSON.stringify(data))
-        })
-    })
-</script>
-
-<script>
+  <script>
     $(document).ready(function () {
-        var playingStatus = false;
-        $('#playBtn').click(function () {
-            $('#playBtn').toggleClass('playing')
-            playingStatus = !playingStatus;
+      var playingStatus = false;
+      $("#playBtn").click(function () {
+        $("#playBtn").toggleClass("playing");
+        playingStatus = !playingStatus;
 
-            if (playingStatus) {
-                $('#audioBtn').trigger("play")
-            } else {
-                $('#audioBtn').trigger("pause");
-            }
-        })
+        if (playingStatus) {
+          $("#audioBtn").trigger("play");
+        } else {
+          $("#audioBtn").trigger("pause");
+        }
+      });
 
-        var mute = false;
-        $('#speaker').click(function () {
-            $('#speaker').toggleClass('mute')
-            mute = !mute;
+      var mute = false;
+      $("#speaker").click(function () {
+        $("#speaker").toggleClass("mute");
+        mute = !mute;
 
-            if (mute) {
-                $("#jquery_jplayer_1").jPlayer("mute", true);
-                $('#speaker').attr("src", "/img/speaker-mute.png")
-            } else {
-                $("#jquery_jplayer_1").jPlayer("mute", false);
-                $('#speaker').attr("src", "/img/speaker-on.png")
-            }
-        })
-    })
-</script>
+        if (mute) {
+          $("#jquery_jplayer_1").jPlayer("mute", true);
+          $("#speaker").attr("src", "/img/speaker-mute.png");
+        } else {
+          $("#jquery_jplayer_1").jPlayer("mute", false);
+          $("#speaker").attr("src", "/img/speaker-on.png");
+        }
+      });
+    });
+  </script>
 
-
-
-<footer>
-
-</footer>
-
+  <footer></footer>
 </html>

@@ -44,25 +44,6 @@ const radioStation = new Parser({
     url: 'https://cloud.oolongradio.com:8443/oolong-rotation'
 });
 
-//req for weather API
-// var req = unirest("GET", "https://weatherbit-v1-mashape.p.rapidapi.com/current");
-
-// req
-//     .query({
-//         "lon": "13.42",
-//         "lat": "52.54"
-//     }).headers({
-//         "x-rapidapi-key": "1ff5a38105mshe44cd67aa91441ap16ec1fjsn37acebe33558",
-//         "x-rapidapi-host": "weatherbit-v1-mashape.p.rapidapi.``com",
-//         "useQueryString": true
-//     }).end(function (res) {
-//         if (res.error) throw new Error(res.error);
-//         console.log(res.body.data[0])
-//         // console.log(res.body.data[0].temp);         //temperature
-//         // console.log(res.body.data[0].weather.code)  //weather
-//     });
-
-
 
 //socket.io
 io.on('connection', function (socket) {
