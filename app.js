@@ -84,7 +84,7 @@ app.get('/', async (req, res) => {
 
 //get filenames when click rotation
 
-app.get('/test', async (req, res) => {
+app.get('/archive', async (req, res) => {
     try {
         const rotationFileList = new Array();
 

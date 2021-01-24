@@ -131,7 +131,7 @@
 
         $('#archive').click(async function () {
             console.log('archive clicked')
-            var response = await fetch('http://localhost:3001/test')
+            var response = await fetch('/archive')
             var data = await response.json()
             console.log(data)
 
