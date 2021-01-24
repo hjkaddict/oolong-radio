@@ -16,8 +16,8 @@ const { createClient } = require("webdav");
 const client = createClient(
     "https://cloud.oolongradio.com/remote.php/dav/files/hjkaddict/",
     {
-        username: process.env.NEXTCLOUD_USERNAME,
-        password: process.env.NEXTCLOUD_PASSWORD
+        username: 'hjkaddict',
+        password: 'eXKTt-qaseQ-DSxzk-AYZnZ-bWGyj'
     }
 );
 
