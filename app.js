@@ -86,27 +86,46 @@ app.get('/', async (req, res) => {
 
 app.get('/test', async (req, res) => {
     try {
-        const directoriesInArchive = await client.getDirectoryContents("/oolongradio/archive");
-        const archive = new Array();
+        const rotationFileList = new Array();
 
-        for (var i in directoriesInArchive.reverse()) {
+        const directoriesInCurrent = await client.getDirectoryContents("/oolongradio/current");
+        for (let i in directoriesInCurrent) {
+            let obj = new Object()
+            obj.date = directoriesInCurrent[i].basename
+            obj.music = new Array()
+
+            let filesInDirectory = await client.getDirectoryContents("/oolongradio/current/" + obj.date)
+            let filterMp3 = await filesInDirectory.filter(function (file) {
+                return file.mime == "audio/mpeg"
+            })
+
+            for (let j in filterMp3) {
+                // .replace(/\.[^/.]+$/, ""); is for trimming '.mp3' in string
+                obj.music.push(filterMp3[j].basename.replace(/\.[^/.]+$/, ""))
+            }
+            rotationFileList.push(obj)
+        }
+
+        const directoriesInArchive = await client.getDirectoryContents("/oolongradio/archive");
+
+        for (let i in directoriesInArchive.reverse()) {
             let obj = new Object()
             obj.date = directoriesInArchive[i].basename
             obj.music = new Array()
 
             let filesInDirectory = await client.getDirectoryContents("/oolongradio/archive/" + obj.date)
-            let filterMp3 = await filesInDirectory.filter(function(file) {
+            let filterMp3 = await filesInDirectory.filter(function (file) {
                 return file.mime == "audio/mpeg"
             })
 
-            for (var j in filterMp3) {
+            for (let j in filterMp3) {
                 // .replace(/\.[^/.]+$/, ""); is for trimming '.mp3' in string
                 obj.music.push(filterMp3[j].basename.replace(/\.[^/.]+$/, ""))
             }
-            archive.push(obj)
+            rotationFileList.push(obj)
         }
 
-        res.status(200).json(archive)
+        res.status(200).json(rotationFileList)
 
     } catch (e) {
         console.log(e)

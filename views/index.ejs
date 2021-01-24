@@ -134,7 +134,27 @@
             var response = await fetch('http://localhost:3001/test')
             var data = await response.json()
             console.log(data)
-            $('.rotationContainer').html(JSON.stringify(data))
+
+
+            var allRotationdata = $('<ul></ul>')
+            for (let i in data) {
+
+                let date = $('<li>' + data[i].date + '</li>')
+
+                let musicFileName = $('<ul></ul>');
+                date.append(musicFileName)
+
+                for (let j in data[i].music) {
+                    musicFileName.append($('<li>' + data[i].music[j] + '</li>'))
+                }
+
+                allRotationdata.append(date)
+
+            }
+
+
+            $('.rotationContainer').html(allRotationdata)
+            // $('.rotationContainer').html(JSON.stringify(data))
         })
     })
 </script>
