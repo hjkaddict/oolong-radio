@@ -1,7 +1,8 @@
 $(document).ready(function () {
 
     var stream = {
-        mp3: "https://cloud.oolongradio.com:8443/oolong-rotation"
+        // mp3: "https://cloud.oolongradio.com:8443/oolong-rotation"
+        mp3: "http://159.65.119.117:8000/oolong-rotation"
     },
         ready = false;
 

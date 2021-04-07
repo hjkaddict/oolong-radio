@@ -1,9 +1,7 @@
 /*
 
 Todo:
-    - Metadata parsing: icecast-parser 말고 다른 방법으로?
-    - http request API 날씨데이터 적용
-    - Rotation Archive List 불러오기
+    - client username / password 다르게 
 */
 
 const express = require('express')
@@ -30,18 +28,17 @@ app.use(express.static('public'));
 app.use(express.json());
 
 const { Parser } = require('icecast-parser');
-const { dir } = require('console');
-const { resolveSoa } = require('dns');
 
 var server = require('http').Server(app);
 var io = require('socket.io')(server);
 
 //set radiostation option 
 const radioStation = new Parser({
-    autoUpdate: true,
-    metadataInterval: 2,
-    notifyOnChangeOnly: false,
-    url: 'https://cloud.oolongradio.com:8443/oolong-rotation'
+  autoUpdate: true,
+  metadataInterval: 2,
+  notifyOnChangeOnly: false,
+  // url: 'https://cloud.oolongradio.com:8443/oolong-rotation'
+  url: "http://159.65.119.117:8000/oolong-rotation",
 });
 
 
