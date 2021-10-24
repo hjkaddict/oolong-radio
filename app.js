@@ -27,27 +27,29 @@ app.set('view engine', 'ejs');
 app.use(express.static('public'));
 app.use(express.json());
 
-const { Parser } = require('icecast-parser');
+// const { Parser } = require('icecast-parser');
 
 var server = require('http').Server(app);
-var io = require('socket.io')(server);
+// var io = require('socket.io')(server);
 
 //set radiostation option 
-const radioStation = new Parser({
-  autoUpdate: true,
-  metadataInterval: 2,
-  notifyOnChangeOnly: false,
-  // url: 'https://cloud.oolongradio.com:8443/oolong-rotation'
-  url: "http://159.65.119.117:8000/oolong-rotation",
-});
+// const radioStation = new Parser({
+//   autoUpdate: true,
+//   metadataInterval: 5,
+//   notifyOnChangeOnly: false,
+//   userAgent: "from old server",
+//   // url: 'https://cloud.oolongradio.com:8443/oolong-rotation'
+//   url: "http://159.65.119.117:8000/oolong-rotation",
+// });
 
 
 //socket.io
-io.on('connection', function (socket) {
-    radioStation.on('metadata', function (data) {
-        socket.emit('metadata', { message: data.get('StreamTitle') });
-    })
-});
+// io.on('connection', function (socket) {
+//     radioStation.on('metadata', function (data) {
+//         console.log(data)
+//         socket.emit('metadata', { message: data.get('StreamTitle') });
+//     })
+// });
 
 app.get('/', async (req, res) => {
     try {
@@ -60,7 +62,7 @@ app.get('/', async (req, res) => {
 
 
 
-//get filenames when click rotation
+//get filenames when click archive
 
 app.get('/archive', async (req, res) => {
     try {

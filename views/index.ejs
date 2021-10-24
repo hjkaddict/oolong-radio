@@ -29,11 +29,11 @@
     <script src="/js/clock.js"></script>
 
     <script>
-      var socket = io.connect("/");
-      var metaData;
-      socket.on("metadata", function (data) {
-        $(".metaData").text(data.message);
-      });
+      // var socket = io.connect("/");
+      // var metaData;
+      // socket.on("metadata", function (data) {
+      //   $(".metaData").text(data.message);
+      // });
     </script>
   </head>
 
@@ -64,7 +64,8 @@
           </div>
         </div>
 
-        <marquee class="metaData" scrollamount="5"></marquee>
+        <!-- <marquee class="metaData" scrollamount="5"></marquee> -->
+        <marquee class="metaDataTest" scrollamount="5"></marquee>
         <div class="volumeControl">
           <img id="speaker" src="/img/speaker-on.png" />
 
@@ -125,7 +126,7 @@
   <script>
     $(function () {
       $("#archive").click(async function () {
-        console.log("archive clicked");
+        // console.log("archive clicked");
         var response = await fetch("/archive", {
           headers: {
             Accept: "application/json",
@@ -149,13 +150,21 @@
         }
 
         $(".rotationContainer").html(allRotationdata);
-        // $('.rotationContainer').html(JSON.stringify(data))
       });
     });
   </script>
 
   <script>
     $(document).ready(function () {
+      setInterval(async () => {
+        var response = await fetch(
+          "http://159.65.119.117:8000/status-json.xsl"
+        );
+        var data = await response.json();
+        // console.log(data.icestats.source.title);
+        $('.metaDataTest').html(data.icestats.source.title);
+      }, 5000);
+
       var playingStatus = false;
       $("#playBtn").click(function () {
         $("#playBtn").toggleClass("playing");
