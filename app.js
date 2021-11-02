@@ -64,53 +64,55 @@ app.get('/', async (req, res) => {
 
 //get filenames when click archive
 
-app.get('/archive', async (req, res) => {
-    try {
-        const rotationFileList = new Array();
 
-        const directoriesInCurrent = await client.getDirectoryContents("/oolongradio/current");
-        for (let i in directoriesInCurrent) {
-            let obj = new Object()
-            obj.date = directoriesInCurrent[i].basename
-            obj.music = new Array()
+app.get("/archive", async (req, res) => {
+  try {
+    const archiveFileList = new Array();
 
-            let filesInDirectory = await client.getDirectoryContents("/oolongradio/current/" + obj.date)
-            let filterMp3 = await filesInDirectory.filter(function (file) {
-                return file.mime == "audio/mpeg"
-            })
+    const directoriesInCurrent = await client.getDirectoryContents(
+      "/oolongradio/archive/current",
+      { deep: true }
+    );
 
-            for (let j in filterMp3) {
-                // .replace(/\.[^/.]+$/, ""); is for trimming '.mp3' in string
-                obj.music.push(filterMp3[j].basename.replace(/\.[^/.]+$/, ""))
-            }
-            rotationFileList.push(obj)
+    let obj = new Object();
+    obj.date = directoriesInCurrent[0].basename;
+    obj.music = new Array();
+
+    directoriesInCurrent.forEach((v) => {
+      if (v.type === "file" && v.mime === "audio/mpeg") {
+        obj.music.push(v.basename.replace(/\.[^/.]+$/, ""));
+      }
+    });
+
+    archiveFileList.push(obj);
+
+    //past
+    const directoriesInArchive = await client.getDirectoryContents(
+      "/oolongradio/archive/past"
+    );
+
+    for (let i in directoriesInArchive.reverse()) {
+      let obj = new Object();
+      obj.date = directoriesInArchive[i].basename;
+      obj.music = new Array();
+
+      let filesInDirectory = await client.getDirectoryContents(
+        "/oolongradio/archive/past/" + obj.date
+      );
+
+      filesInDirectory.forEach((v) => {
+        if (v.type === "file" && v.mime === "audio/mpeg") {
+          obj.music.push(v.basename.replace(/\.[^/.]+$/, ""));
         }
+      });
 
-        const directoriesInArchive = await client.getDirectoryContents("/oolongradio/archive");
-
-        for (let i in directoriesInArchive.reverse()) {
-            let obj = new Object()
-            obj.date = directoriesInArchive[i].basename
-            obj.music = new Array()
-
-            let filesInDirectory = await client.getDirectoryContents("/oolongradio/archive/" + obj.date)
-            let filterMp3 = await filesInDirectory.filter(function (file) {
-                return file.mime == "audio/mpeg"
-            })
-
-            for (let j in filterMp3) {
-                // .replace(/\.[^/.]+$/, ""); is for trimming '.mp3' in string
-                obj.music.push(filterMp3[j].basename.replace(/\.[^/.]+$/, ""))
-            }
-            rotationFileList.push(obj)
-        }
-
-        res.status(200).json(rotationFileList)
-
-    } catch (e) {
-        console.log(e)
+      archiveFileList.push(obj);
     }
-})
+    res.status(200).json(archiveFileList);
+  } catch (e) {
+    console.log(e);
+  }
+});
 
 server.listen(process.env.PORT || 3001, function () {
     console.log("Express server listening on port %d in %s mode", this.address().port, app.settings.env);
